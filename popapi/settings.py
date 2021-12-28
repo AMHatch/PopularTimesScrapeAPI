@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 if len(ALLOWED_HOSTS) == 1 and '' in ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ['https://introverse-crawler.herokuapp.com/']
+    ALLOWED_HOSTS = ['introverse-crawler.herokuapp.com']
 
 # Application definition
 
