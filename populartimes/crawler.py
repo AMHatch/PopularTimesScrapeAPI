@@ -68,7 +68,7 @@ def rect_circle_collision(rect_left, rect_right, rect_bottom, rect_top, circle_x
     return dist_sq < (radius * radius)
 
 
-def cover_rect_with_cicles(w, h, r):
+def cover_rect_with_circles(w, h, r):
     """
     fully cover a rectangle of given width and height with
     circles of radius r. This algorithm uses a hexagonal
@@ -130,7 +130,7 @@ def get_circle_centers(b1, b2, radius):
     dist_lat = geodesic(Point(sw[0], sw[1]), Point(ne[0], sw[1])).meters
     dist_lng = geodesic(Point(sw[0], sw[1]), Point(sw[0], ne[1])).meters
 
-    circles = cover_rect_with_cicles(dist_lat, dist_lng, radius)
+    circles = cover_rect_with_circles(dist_lat, dist_lng, radius)
     cords = [
         GeodesicDistance(meters=c[0])
             .destination(
@@ -517,8 +517,8 @@ def run(_params):
     # cover search area with circles
     bounds = params["bounds"]
     for lat, lng in get_circle_centers([bounds["lower"]["lat"], bounds["lower"]["lng"]],  # southwest
-                                       [bounds["upper"]["lat"], bounds["upper"]["lng"]],  # northeast
-                                       params["radius"]):
+                                        [bounds["upper"]["lat"], bounds["upper"]["lng"]],  # northeast
+                                        params["radius"]):
         q_radar.put(dict(pos=(lat, lng), res=0))
 
     q_radar.join()
